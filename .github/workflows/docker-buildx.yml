@@ -15,7 +15,7 @@ permissions:
 
 concurrency:
     group: docker-${{ github.ref }}
-    cancel-in-progress: false
+    cancel-in-progress: true
 
 env:
     REGISTRY: ghcr.io
