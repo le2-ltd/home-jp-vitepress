@@ -1,7 +1,8 @@
-// https://vitepress.dev/guide/custom-theme
-import { h } from 'vue'
-import DefaultTheme from 'vitepress/theme'
-import './style.css'
+import { h } from "vue";
+import DefaultTheme from "vitepress/theme";
+import CompanyHome from "./components/CompanyHome.vue";
+import RedirectPage from "./components/RedirectPage.vue";
+import "./style.css";
 
 /** @type {import('vitepress').Theme} */
 export default {
@@ -9,9 +10,10 @@ export default {
   Layout: () => {
     return h(DefaultTheme.Layout, null, {
       // https://vitepress.dev/guide/extending-default-theme#layout-slots
-    })
+    });
   },
-  enhanceApp({ app, router, siteData }) {
-    // ...
-  }
-}
+  enhanceApp({ app }) {
+    app.component("CompanyHome", CompanyHome);
+    app.component("RedirectPage", RedirectPage);
+  },
+};

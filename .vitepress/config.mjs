@@ -1,23 +1,48 @@
 import { defineConfig } from "vitepress";
 
-import { MermaidMarkdown, MermaidPlugin } from "vitepress-plugin-mermaid";
-
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  lang: "ja-JP",
+  appearance: false,
   rewrites: {
     // 左边：真实存在的文件路径（相对 srcDir）
     // 右边：希望它在站点中对应的“虚拟路径”
     // "aboutus.md": "index.md",
   },
-  // head: [["link", { rel: "icon", href: "/favicon.ico" }]],
-  markdown: {
-    config(md) {
-      md.use(MermaidMarkdown);
-    },
-  },
+  head: [
+    ["link", { rel: "icon", href: "/favicon.ico" }],
+    [
+      "meta",
+      {
+        name: "keywords",
+        content:
+          "日本市場向けソフトウェア開発, オフショア開発, 中国開発拠点, 業務システム開発, QA, プロジェクト管理",
+      },
+    ],
+    ["meta", { property: "og:type", content: "website" }],
+    ["meta", { property: "og:locale", content: "ja_JP" }],
+    ["meta", { property: "og:site_name", content: "成都雷耳兔科技有限公司" }],
+    [
+      "meta",
+      {
+        property: "og:title",
+        content: "日本市場向けソフトウェア開発 | 成都雷耳兔科技有限公司",
+      },
+    ],
+    [
+      "meta",
+      {
+        property: "og:description",
+        content:
+          "中国拠点の専任チームが、日本企業のソフトウェア開発、品質管理、納品後改善を支援します。",
+      },
+    ],
+    ["meta", { name: "twitter:card", content: "summary" }],
+  ],
   srcDir: "docs",
   title: "成都雷耳兔科技有限公司",
-  description: "",
+  description:
+    "日本市場向けソフトウェア開発に特化した、中国拠点のオフショア開発チームです。",
   themeConfig: {
     // search: {
     //   provider: "local",
@@ -25,13 +50,12 @@ export default defineConfig({
     outline: {
       label: "页面导航",
     },
-    lastUpdated: {
-      text: "最后更新",
-      formatOptions: {
-        dateStyle: "full",
-        timeStyle: "medium",
-      },
-    },
+    nav: [
+      { text: "会社概要", link: "/#about" },
+      { text: "技術能力", link: "/#skills" },
+      { text: "工程品質", link: "/#engineering" },
+      { text: "お問い合わせ", link: "/#contact" },
+    ],
     // https://vitepress.dev/reference/default-theme-config
     // nav: [
     //   { text: "首页", link: "/" },
@@ -51,26 +75,7 @@ export default defineConfig({
     //   { text: "首页", link: "/" },
     //   { text: "GitHub", link: "https://github.com/your-repo" },
     // ],
-    sidebar: [
-      {
-        // text: "总体介绍",
-        collapsible: false,
-        items: [
-          {
-            text: "会社概要",
-            link: "/",
-          },
-          {
-            text: "技術能力",
-            link: "/skills",
-          },
-          {
-            text: "エンジニアリング能力",
-            link: "/engineering",
-          },
-        ],
-      },
-    ],
+    sidebar: false,
 
     // socialLinks: [
     //   { icon: "github", link: "https://github.com/vuejs/vitepress" },
@@ -84,22 +89,7 @@ export default defineConfig({
     },
   },
 
-  mermaid: {
-    // refer https://mermaid.js.org/config/setup/modules/mermaidAPI.html#mermaidapi-configuration-defaults for options
-  },
-  // optionally set additional config for plugin itself with MermaidPluginConfig
-  mermaidPlugin: {
-    class: "mermaid my-class", // set additional css classes for parent container
-  },
-
   vite: {
-    plugins: [MermaidPlugin()],
-    optimizeDeps: {
-      include: ["mermaid"], // 只预构建 mermaid
-    },
-    ssr: {
-      noExternal: ["mermaid"],
-    },
     server: {
       port: 3000, // 你想要的端口号
       host: "0.0.0.0", // 如果需要对局域网开放，也可以加上 host
