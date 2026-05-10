@@ -6,3 +6,4 @@ unpackage/
 .vitepress/dist/
 pnpm-lock.yaml
 .codex-artifacts/
+.env
