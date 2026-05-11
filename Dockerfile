@@ -8,7 +8,6 @@ ARG NPM_REGISTRY
 RUN if [ -n "$APK_REPOSITORY" ]; then \
         sed -i \
             -e "s|https://dl-cdn.alpinelinux.org/alpine|$APK_REPOSITORY|g" \
-            -e "s|http://dl-cdn.alpinelinux.org/alpine|$APK_REPOSITORY|g" \
             /etc/apk/repositories; \
     fi
 
