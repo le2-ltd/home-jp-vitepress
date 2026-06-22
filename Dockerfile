@@ -1,6 +1,7 @@
 ARG IMAGE_MIRROR
+ARG IMAGE_PREFIX
 
-FROM ${IMAGE_MIRROR}node:alpine AS builder
+FROM ${IMAGE_MIRROR:-${IMAGE_PREFIX}}node:alpine AS builder
 
 ARG APK_REPOSITORY
 ARG NPM_REGISTRY
@@ -31,6 +32,6 @@ COPY . .
 
 RUN pnpm run docs:build
 
-FROM ${IMAGE_MIRROR}nginx:latest
+FROM ${IMAGE_MIRROR:-${IMAGE_PREFIX}}nginx:latest
 
 COPY --from=builder /app/.vitepress/dist /usr/share/nginx/html
